@@ -1,0 +1,8 @@
+delete from person 
+where email in 
+(select email from 
+            (select email 
+             from person 
+             group by email 
+            having (count(email)>1) and id!=min(id)) as email);
+
